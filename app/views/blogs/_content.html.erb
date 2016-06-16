@@ -1,0 +1,24 @@
+<!-- First Blog Post -->
+<% @blogs.each do |blog| %>
+    <h2>
+      <%= link_to blog.title,  blog_path(blog) %>
+    </h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.
+    <%= link_to '>>', blogs_path(blog) %>
+    </p>
+    <!--<a class="btn btn-primary" href="#">Read More <i class="fa fa-angle-right"></i></a>-->
+    <p class="grey"><i class="fa fa-clock-o"></i> <%= blog.created_at.strftime(' %B %-d, %Y') %> </p>
+    <hr/>
+<% end %>
+
+
+<!-- Pager -->
+<ul class="pager">
+  <li class="previous">
+    <%= link_to_previous_page @blogs, h("<<PRE"), :remote => true %>
+  </li>
+  <li class="next">
+    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true %>
+  </li>
+</ul>
