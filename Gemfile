@@ -52,7 +52,8 @@ group :development do
   gem 'spring'
 end
 #bootstrap
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.3.6'  #gem 'rails-assets-bootstrap'
+gem 'rails-assets-font-awesome', '~> 4.3.0' #gem 'rails-font-awesome'
 #attributes辅助
 gem 'annotate'
 #服务器
@@ -62,6 +63,6 @@ gem 'kaminari'
 #配置config
 gem 'config'
 #假删除
-gem "acts_as_paranoid"
+gem "paranoia", "~> 2.0"
 
 
