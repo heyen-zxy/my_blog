@@ -25,3 +25,4 @@ config/environments/*.local.yml
 test/*
 log/*
 tmp/*
+public/assets/*
