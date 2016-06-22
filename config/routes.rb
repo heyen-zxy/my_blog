@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  mount RailsI18nterface::Engine => "/translate", :as => "translate_engine"
   root "blogs#index"
   resources :blogs
 

@@ -1,5 +1,5 @@
 ---
-en:
+ja:
   date:
     formats:
       default: "%Y-%m-%d"
@@ -112,9 +112,9 @@ en:
           many: Cannot delete record because dependent %{record} exist
     attributes:
       access:
-        amount: amount
+        amount: "总数量"
       category:
-        updated_at: updated at
+        updated_at: "总数量"
   datetime:
     distance_in_words:
       half_a_minute: half a minute
@@ -181,4 +181,4 @@ en:
       previous: "&lsaquo; Prev"
       next: Next &rsaquo;
       truncate: "&hellip;"
-  hello: Hello world
+  hello: "你好"
