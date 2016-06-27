@@ -1,29 +1,29 @@
-# Change to match your CPU core count
+ruby
+
+#!/usr/bin/env puma
+
+#rails的运行环境
+environment 'production'
+threads 2, 64
 workers 4
 
-# Min and Max threads per worker
-threads 1, 6
+#项目名
+app_name = "blog"
+#项目路径
+application_path = "/var/rails-app/#{app_name}"
+#这里一定要配置为项目路径下地current
+directory "#{application_path}/current"
 
-app_dir = File.expand_path("../..", __FILE__)
-shared_dir = "#{app_dir}/shared"
+#下面都是 puma的配置项
+pidfile "#{application_path}/shared/tmp/pids/puma.pid"
+state_path "#{application_path}/shared/tmp/sockets/puma.state"
+stdout_redirect "#{application_path}/shared/log/puma.stdout.log", "#{application_path}/shared/log/puma.stderr.log"
+bind "unix://#{application_path}/shared/tmp/sockets/#{app_name}.sock"
+activate_control_app "unix://#{application_path}/shared/tmp/sockets/pumactl.sock"
 
-# Default to production
-rails_env = ENV['RAILS_ENV'] || "production"
-environment rails_env
-
-# Set up socket location
-bind "unix://#{shared_dir}/sockets/puma.sock"
-
-# Logging
-stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
-
-# Set master PID and state locations
-pidfile "#{shared_dir}/pids/puma.pid"
-state_path "#{shared_dir}/pids/puma.state"
-activate_control_app
-
-on_worker_boot do
-  require "active_record"
-  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
-  ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+#后台运行
+daemonize true
+on_restart do
+  puts 'On restart...'
 end
+preload_app!
