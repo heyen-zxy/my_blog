@@ -69,4 +69,8 @@ gem 'redis', '~>3.2'
 #I18n
 gem 'rails-i18nterface'
 
+group :production do
+  gem 'mysql2', "~> 0.3.11"
+end
+
 
