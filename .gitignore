@@ -17,7 +17,8 @@
 /tmp
 log/*
 test/*
-shared/*
+/shared/*
+/shared/log/*
 config/puma.rb
 config/settings.local.yml
 config/settings/*.local.yml
