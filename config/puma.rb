@@ -1,4 +1,4 @@
-ruby
+#ruby
 
 #!/usr/bin/env puma
 
