@@ -26,7 +26,7 @@ set :rvm_path, '/usr/local/rvm/bin/rvm'
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
 # 中括号里的文件 会出现在服务器项目附录的shared文件夹中，这里加入了secrets.yml，环境密钥无需跟开发计算机一样
-set :shared_paths, ['config/database.yml',  'log']
+set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -60,11 +60,14 @@ task :setup => :environment do
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp"]
 
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/sockets"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/sockets"]
+
   queue! %[mkdir -p "#{deploy_to}/#{shared_path}/sockets"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/sockets"]
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/pids"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/pids"]
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp/pids"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp/pids"]
 
   queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
   #queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
@@ -101,6 +104,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
+      queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  restart"
     end
   end
 end
