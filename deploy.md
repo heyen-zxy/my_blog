@@ -15,7 +15,7 @@
 	#rails的运行环境
 	environment 'production'
 	threads 2, 64 #最大线程数和最小线程数
-	workers 4 #根据系统是几核的设置
+	workers 4 #一般设置2-4
 
 	#项目名
 	app_name = "blog"
