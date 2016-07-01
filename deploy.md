@@ -1,5 +1,5 @@
 # nginx + puma + mina 自动化部署
-
+主要参考 [https://segmentfault.com/a/1190000002918225](https://segmentfault.com/a/1190000002918225)
 #### puma
  在gemfile中加入 ` gem 'puma' `
   
@@ -28,7 +28,7 @@
 	pidfile "#{application_path}/shared/tmp/pids/puma.pid"
 	state_path "#{application_path}/shared/tmp/sockets/puma.state"
 	stdout_redirect "#{application_path}/shared/log/puma.stdout.log", "#{application_path}/shared/log/	puma.stderr.log"
-	bind "unix://#{application_path}/shared/tmp/sockets/#{app_name}.sock"
+	bind "unix://#{application_path}/shared/tmp/sockets/#{app_name}.sock" #这个需要配置到nginx中
 	activate_control_app "unix://#{application_path}/shared/tmp/sockets/pumactl.sock"
 
 	#后台运行
@@ -132,9 +132,46 @@
       			queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       			# queue "chown -R www-data #{deploy_to}"
       			queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt" 
-      			queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  restart" #touch好像没有效果 所以直接使用的命令重启， 重启命令参考：(http://ruby-journal.com/digesting-pumactl/)
+      			queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  restart" #touch好像没有效果 所以直接使用的命令重启， 重启命令参考：
     		end
   		end
 	end
+	
+puma 重启命令参考[http://ruby-journal.com/digesting-pumactl](http://ruby-journal.com/digesting-pumactl)
 
+执行 ` mina setup `会在服务器生成对应的项目路径
+
+* current -当前版本目录也就是项目目录
+* last_version -版本号
+* releases/ -过去的版本
+* scm/
+* shared/ 先前shared_path所设定另外拉出来的文件都在这里
+* tmp/
+
+
+#### nginx
+在` /etc/nginx/sites-enabled/ `创建文件 blog文件，sites-enabled下的文件会默认加载到nginx.conf中
+
+	upstream deploy_blog {
+	         server   unix:///var/rails-app/blog/shared/tmp/sockets/blog.sock; #这个是在puma.rb 中产生的
+	        }
+	
+	server {
+	    listen 80;
+	    server_name 112.124.46.102;
+	    client_max_body_size 3m;
+	
+	    # Tell Nginx and Passenger where your app's 'public' directory is
+	    root /var/rails-app/blog/current/public;
+	    location / {
+	        expires      max;
+	        add_header     Cache-Control public;
+	
+	        proxy_redirect   off;
+	        proxy_set_header  Host        $http_host;
+	        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+	
+	        proxy_pass     http://deploy_blog; #此处指定对应的upstream
+	  }
+	}
   
