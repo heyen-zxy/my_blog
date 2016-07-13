@@ -13,7 +13,6 @@
 
 config/database.yml
 config/secrets.yml
-config/puma.rb
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
@@ -22,7 +21,6 @@ log/*
 test/*
 /shared/*
 /shared/log/*
-config/puma.rb
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
