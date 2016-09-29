@@ -74,3 +74,8 @@ group :production do
 end
 
 
+#markdown
+gem 'redcarpet'
+gem 'coderay'
+
+
