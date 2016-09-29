@@ -3,7 +3,7 @@
 #!/usr/bin/env puma
 
 #rails的运行环境
-if Rails.env == 'production'
+#if Rails.env == 'production'
   environment 'production'
   threads 2, 64
   workers 4
@@ -28,4 +28,4 @@ if Rails.env == 'production'
     puts 'On restart...'
   end
   preload_app!
-end
+#end

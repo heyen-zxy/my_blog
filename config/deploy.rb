@@ -103,8 +103,8 @@ task :deploy => :environment do
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
-      queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-      #queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  start"
+      #queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
+      queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  start"
     end
   end
 end
