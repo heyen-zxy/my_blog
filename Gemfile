@@ -1,9 +1,14 @@
 #source 'https://rubygems.org'
 source 'https://ruby.taobao.org'
 
+ruby '2.3.0'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-font-awesome', '~> 4.3.0'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -53,7 +58,7 @@ group :development do
 end
 #bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'  #gem 'rails-assets-bootstrap'
-gem 'font-awesome-rails', '~> 4.3.0' #gem 'rails-font-awesome'
+#gem 'font-awesome-rails', '~> 4.3.0' #gem 'rails-font-awesome'
 #attributes辅助
 gem 'annotate'
 #服务器
@@ -63,7 +68,7 @@ gem 'kaminari'
 #配置config
 gem 'config'
 #假删除
-gem "paranoia", "~> 2.0"
+gem "paranoia", "~> 2.2.0.pre"
 #dedis
 gem 'redis', '~>3.2'
 #I18n

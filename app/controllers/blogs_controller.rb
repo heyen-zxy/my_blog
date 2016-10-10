@@ -8,4 +8,9 @@ class BlogsController < BaseController
     end
   end
 
+
+  def search_blogs
+    
+  end
+
 end
