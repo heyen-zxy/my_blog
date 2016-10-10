@@ -55,7 +55,11 @@ Rails.application.routes.draw do
   #   end
   mount RailsI18nterface::Engine => "/translate", :as => "translate_engine"
   root "blogs#index"
-  resources :blogs
+  resources :blogs do
+    collection do
+      post :index
+    end
+  end
 
 
 end

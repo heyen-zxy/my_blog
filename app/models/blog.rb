@@ -19,4 +19,6 @@ class Blog < ActiveRecord::Base
   has_many :tags, through: :blog_tags
   validates :title, :category_id, :content, presence: true
 
+
+
 end

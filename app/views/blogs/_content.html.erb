@@ -19,6 +19,6 @@
     <%= link_to_previous_page @blogs, h("<<PRE"), :remote => true %>
   </li>
   <li class="next">
-    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true %>
+    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true, search: params[:search] %>
   </li>
 </ul>
