@@ -41,7 +41,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-2.1.3]'
+  invoke :'rvm:use[ruby-2.3.0]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -104,7 +104,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       #queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-      queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  start"
+      queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  restart"
     end
   end
 end
