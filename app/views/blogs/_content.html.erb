@@ -16,9 +16,9 @@
 <!-- Pager -->
 <ul class="pager">
   <li class="previous">
-    <%= link_to_previous_page @blogs, h("<<PRE"), :remote => true %>
+    <%= link_to_previous_page @blogs, h("<<PRE"), :remote => true, params: params %>
   </li>
   <li class="next">
-    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true, search: params[:search] %>
+    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true, params: params %>
   </li>
 </ul>

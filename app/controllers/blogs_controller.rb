@@ -1,14 +1,12 @@
 class BlogsController < BaseController
 
   def index
-    @blogs = Blog.all.page(params[:page]).per(5)
-    @blogs  = Blog.where('title like ?', "%#{params[:search]}%").page(params[:page]).per(5) if params[:search].present?
+    @blogs  = Blog.where(Blog.get_conditions params).page(params[:page]).per(5)
     respond_to do |format|
       format.html
       format.js
     end
   end
-
 
 
 end

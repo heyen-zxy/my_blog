@@ -1,13 +1,13 @@
 <!-- Blog Search Well -->
+<%= form_tag blogs_path, id: 'search_form' do %>
 <div class="well">
-  <%= form_tag blogs_path do %>
   <div class="input-group">
     <%= text_field_tag :search, params[:search], class: 'form-control'  %>
      <span class="input-group-btn">
       <button class="btn btn-default" type="commit"><i class="fa fa-search"></i></button>
      </span>
   </div>
-  <% end %>
+
   <!-- /.input-group -->
 </div>
 
@@ -15,38 +15,38 @@
 <div class="well">
   <h4>Blog Categories</h4>
   <div class="row">
-    <div class="col-lg-6">
-      <ul class="list-unstyled">
-        <li><a href="#">Category Name</a>
-        </li>
-        <li><a href="#">Category Name</a>
-        </li>
-        <li><a href="#">Category Name</a>
-        </li>
-        <li><a href="#">Category Name</a>
-        </li>
-      </ul>
-    </div>
     <!-- /.col-lg-6 -->
-    <div class="col-lg-6">
-      <ul class="list-unstyled">
-        <li><a href="#">Category Name</a>
-        </li>
-        <li><a href="#">Category Name</a>
-        </li>
-        <li><a href="#">Category Name</a>
-        </li>
-        <li><a href="#">Category Name</a>
-        </li>
-      </ul>
-    </div>
-    <!-- /.col-lg-6 -->
+    <% Category.all.in_groups(2) do |categories| %>
+        <div class="col-lg-6">
+          <ul class="list-unstyled category">
+            <% categories.each do |category| %>
+                <% if category.present? %>
+                <li><a href="javascript:void(0);" id="<%= category.id %>"><%= category.name %></a>
+                <% end %>
+            <% end %>
+
+            </li>
+          </ul>
+        </div>
+    <% end %>
+
   </div>
   <!-- /.row -->
 </div>
+    <%= hidden_field_tag :category, params[:category] %>
+<% end %>
 
 <!-- Side Widget Well -->
 <div class="well">
   <h4>Side Widget Well</h4>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
 </div>
+<script>
+  $(
+      $(".category li a").on('click', function(){
+        $('#category').val($(this).attr('id'));
+        $("#search_form").submit();
+      })
+  );
+
+</script>

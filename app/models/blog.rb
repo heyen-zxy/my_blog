@@ -19,6 +19,21 @@ class Blog < ActiveRecord::Base
   has_many :tags, through: :blog_tags
   validates :title, :category_id, :content, presence: true
 
-
+  class << self
+    def get_conditions params
+      search = [' 1 = 1 ']
+      arr = [[]]
+      if params[:search].present?
+        search << ' blogs.title like ? '
+        arr << "%#{params[:search]}%"
+      end
+      if params[:category].present?
+        search << ' blogs.category_id  =  ? '
+        arr << params[:category]
+      end
+      arr[0] = search.join 'and'
+      arr.flatten
+    end
+  end
 
 end
