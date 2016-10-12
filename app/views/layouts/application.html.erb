@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MyBlog</title>
+  <title>张学元的博客</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,7 @@
   <!-- Page Heading/Breadcrumbs -->
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">张学元1111
+      <h1 class="page-header">张学元
         <small>heyen</small>
       </h1>
       <ol class="breadcrumb">
@@ -43,7 +43,14 @@
     </div>
   </div>
   <!-- /.row -->
-  <%= yield %>
+  <div class="row">
+    <%= yield %>
+    <!-- Blog Sidebar Widgets Column -->
+    <div class="col-md-4">
+      <%= render partial: 'common/nav_right' %>
+    </div>
+
+  </div>
   <%= render partial: 'common/foot' %>
 
 </div>
