@@ -10,7 +10,7 @@ module ApplicationHelper
         :strikethrough =>true
     }
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,options)
-    markdown.render(h(text)).html_safe
+    markdown.render(text).html_safe
   end
 
 
@@ -19,5 +19,22 @@ module ApplicationHelper
       CodeRay.scan(code, language).div(:line_numbers => :table)
     end
   end
+
+
+  def get_nav
+    if params[:controller].downcase == 'blogs'
+      case params[:action]
+        when 'about'
+        '关于我'
+        when 'contact'
+          '联系'
+        else
+          '博客'
+      end
+
+    end
+  end
+
+
 
 end

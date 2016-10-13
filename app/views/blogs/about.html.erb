@@ -1,0 +1,30 @@
+<!-- Blog Entries Column -->
+<div class="col-md-8">
+
+  <div class="col-md-6">
+    <br>
+    <%= image_tag 'me.jpeg', style: "width: 80%;  border-radius: 100%;" %>
+  </div>
+  <div class="col-md-6">
+    <h2>关于我</h2>
+    <%= markdown '	def about_me
+		{
+		id:"heyen",
+		name: "张学元",
+		birthday: "1990/20/10",
+		height: "secret",
+		address: "上海虹口区",
+		hobby: "ruby/fish",
+		motto: "Only you can change yourself"
+		}
+	end' %>
+  </div>
+
+
+</div>
+
+
+
+
+
+

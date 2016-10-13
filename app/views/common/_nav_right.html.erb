@@ -21,7 +21,7 @@
           <ul class="list-unstyled category">
             <% categories.each do |category| %>
                 <% if category.present? %>
-                <li><a href="javascript:void(0);" id="<%= category.id %>"><%= category.name %></a>
+                <li><a href="javascript:void(0);" id="<%= category.id %>" class="<%= category.id == params[:category].to_i ? 'select' : '' %>"><%= category.name %></a>
                 <% end %>
             <% end %>
 

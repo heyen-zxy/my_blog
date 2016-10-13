@@ -1,7 +1,7 @@
 <!-- First Blog Post -->
 <% @blogs.each do |blog| %>
     <h2>
-      <%= link_to blog.title,  blog_path(blog) %>
+      <%= link_to blog.title,  blog_url(blog) %>
     </h2>
 
     <div>
@@ -16,9 +16,9 @@
 <!-- Pager -->
 <ul class="pager">
   <li class="previous">
-    <%= link_to_previous_page @blogs, h("<<PRE"), :remote => true, params: params %>
+    <%= link_to_previous_page @blogs, h("<<PRE"), :remote => true, params: params.permit(:search, :category) %>
   </li>
   <li class="next">
-    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true, params: params %>
+    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true, params: params.permit(:search, :category)%>
   </li>
 </ul>
