@@ -2,13 +2,18 @@
 <% @blogs.each do |blog| %>
     <h2>
       <%= link_to blog.title,  blog_url(blog) %>
+      <small>
+        <% blog.tags.each do |tag| %>
+        <span class="tag"><%= tag.name %></span>
+        <% end %>
+      </small>
     </h2>
 
     <div>
       <%= blog.content.to_s.truncate(200)%>
     </div>
     <br/>
-    <p class="grey"><%= image_tag 'self.jpeg', alt: 'heyen', class: 'author-thumb' %><i class="fa fa-clock-o"></i> <%= blog.created_at.strftime(' %B %-d, %Y') %> </p>
+    <p class="grey"><%= image_tag 'me.png', alt: 'heyen', class: 'author-thumb' %><i class="fa fa-clock-o"></i> <%= blog.created_at.strftime(' %B %-d, %Y') %> </p>
     <hr/>
 <% end %>
 

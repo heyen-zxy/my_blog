@@ -50,3 +50,16 @@ a:active{
 .white{
   color: white;
 }
+
+.tag {
+  display: inline-block;
+  padding: 0 8px;
+  color: #017e66;
+  background-color: rgba(1,126,102,.08);
+  height: 24px;
+  line-height: 24px;
+  font-weight: 400;
+  font-size: 13px;
+  text-align: center;
+  margin: 5px;
+}

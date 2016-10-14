@@ -1,15 +1,16 @@
 # == Schema Information
 #
-# Table name: tags
+# Table name: contacts
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  deleted_at :datetime
+#  tel        :string
+#  email      :string
+#  message    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Tag < ActiveRecord::Base
-  has_many :blog_tags
-  has_and_belongs_to_many :blogs, through: :blog_tags
+class Contact < ApplicationRecord
+
 end

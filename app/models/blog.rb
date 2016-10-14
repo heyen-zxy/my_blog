@@ -4,8 +4,8 @@
 #
 #  id          :integer          not null, primary key
 #  category_id :integer          not null
-#  title       :string(255)      not null
-#  content     :string(255)      not null
+#  title       :string           not null
+#  content     :string           not null
 #  deleted_at  :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

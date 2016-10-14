@@ -1,0 +1,7 @@
+<% if flash[:notice].present? %>
+<div class="alert alert-warning topframe" role="alert"><%= flash[:notice] %>
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button></div>
+<% elsif flash[:error].present? %>
+    <div class="alert alert-danger topframe" role="alert"><%= flash[:error] %>
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button></div>
+<% end %>

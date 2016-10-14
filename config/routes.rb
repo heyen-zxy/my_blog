@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       post :index
       get :about
       get :contact
+      post :send_message
     end
   end
 

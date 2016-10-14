@@ -18,7 +18,40 @@
     </li>
   </ul>
 
+  <h3>给我留言</h3>
+  <%= form_for @contact, url: send_message_blogs_path, id: 'contactForm'  do |f| %>
+    <div class="control-group form-group">
+      <div class="controls">
+        <label>姓名:</label>
+        <%= f.text_field :name, class: "form-control" %>
+        <p class="help-block"></p>
+      </div>
+    </div>
+    <div class="control-group form-group">
+      <div class="controls">
+        <label>号码:</label>
+        <%= f.text_field :tel, class: "form-control" %>
+      </div>
+    </div>
+      <div class="control-group form-group">
+        <div class="controls">
+          <label>邮箱:</label>
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+      </div>
+    <div class="control-group form-group">
+      <div class="controls">
+        <label>内容:</label>
+        <%= f.text_area :message, class: "form-control", maxlength: "999", style: "resize:none", id: "message", rows: "10", cols: "100"%>
+      </div>
+    </div>
+    <div id="success"></div>
+    <!-- For success/fail messages -->
+      <%= f.submit '发送', class: 'btn btn-primary'%>
+  <% end %>
+
 </div>
+
 
 
 

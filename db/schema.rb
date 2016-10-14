@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,43 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620140159) do
+ActiveRecord::Schema.define(version: 20161014010909) do
 
   create_table "accesses", force: :cascade do |t|
-    t.integer  "amount",     limit: 4, default: 0
-    t.integer  "blog_id",    limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "amount",     default: 0
+    t.integer  "blog_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "blog_tags", force: :cascade do |t|
-    t.integer  "tag_id",     limit: 4
-    t.integer  "blog_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "tag_id"
+    t.integer  "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "blogs", force: :cascade do |t|
-    t.integer  "category_id", limit: 4,   null: false
-    t.string   "title",       limit: 255, null: false
-    t.string   "content",     limit: 255, null: false
+    t.integer  "category_id", null: false
+    t.string   "title",       null: false
+    t.string   "content",     null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
+    t.string   "name",       null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "tel"
+    t.string   "email"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.datetime "deleted_at"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
