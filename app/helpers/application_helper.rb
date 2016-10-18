@@ -9,14 +9,14 @@ module ApplicationHelper
         :hard_wrap => true,
         :strikethrough =>true
     }
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,options)
+    markdown = Redcarpet::Markdown.new(HTMLWithCodeRay,options)
     markdown.render(text).html_safe
   end
 
 
   class HTMLWithCodeRay < Redcarpet::Render::HTML
     def block_code(code, language)
-      CodeRay.scan(code, language).div(:line_numbers => :table)
+      CodeRay.scan(code, :ruby).div(:line_numbers => :table)
     end
   end
 

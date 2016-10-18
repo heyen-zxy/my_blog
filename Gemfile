@@ -1,5 +1,6 @@
 #source 'https://rubygems.org'
-source 'https://ruby.taobao.org'
+#source 'https://ruby.taobao.org'
+source 'https://gems.ruby-china.org'
 
 ruby '2.3.0'
 
