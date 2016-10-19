@@ -46,11 +46,11 @@ class Admins::BlogsController < Admins::BaseController
     redirect_to admins_blogs_path
   end
 
+
+
   def view
-    @content = markdown params[:content]
-    respond_to do |format|
-      format.js
-    end
+    content = markdown params[:content]
+    render json: {content: content}
   end
 
 

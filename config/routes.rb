@@ -69,7 +69,9 @@ Rails.application.routes.draw do
   namespace :admins do
     root "blogs#index"
     resources :blogs do
-      post 'view'
+      collection do
+        post :view
+      end
     end
     resources :categories
     resources :tags
