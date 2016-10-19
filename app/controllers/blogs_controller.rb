@@ -1,5 +1,4 @@
 class BlogsController < BaseController
-  before_action :authenticate_admin!
   before_action :set_blog, only: [:show]
   def index
     @blogs  = Blog.includes(:tags).where(Blog.get_conditions params).order('created_at desc').page(params[:page]).per(10)
