@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'about/index'
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -64,6 +64,16 @@ Rails.application.routes.draw do
       get :contact
       post :send_message
     end
+  end
+
+  namespace :admins do
+    root "blogs#index"
+    resources :blogs do
+      post 'view'
+    end
+    resources :categories
+    resources :tags
+    resources :contacts, only: [:index, :destroy]
   end
 
 

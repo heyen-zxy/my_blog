@@ -84,4 +84,6 @@ end
 gem 'redcarpet'
 gem 'coderay'
 
+gem 'devise'
+
 

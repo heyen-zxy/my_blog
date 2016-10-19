@@ -1,0 +1,39 @@
+<div class="panel-group" id="accordion">
+<!-- First Blog Post -->
+<% @contacts.each do |contact| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<%= contact.id %>"><%= contact.name.present? ? contact.name : '这家伙连名字都不留' %></a>
+          <span  style="float: right;">
+            <%= link_to '删除', admins_contact_path(contact), method: :delete, data: { confirm: "确定删除吗?" } %>
+          </span>
+          </h4>
+        </div>
+        <div id="collapseOne<%= contact.id %>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><i class="fa fa-phone"></i>
+              <abbr title="Phone">P</abbr>: <%= contact.tel %></p>
+            <p><i class="fa fa-envelope-o"></i>
+              <abbr title="Email">E</abbr>: <a href="mailto:645054538@qq.com"><%= contact.email %></a>
+            </p>
+            <p><i class="fa fa-comment-o"></i>
+              <abbr title="message">M</abbr>: </br>
+              <%= text_area_tag :message, contact.message, class: "form-control",  style: "resize:none", rows: "10", cols: "100", readonly: true%>
+            </p>
+          </div>
+        </div>
+      </div>
+<% end %>
+  </div>
+
+
+<!-- Pager -->
+<ul class="pager">
+  <li class="previous">
+    <%= link_to_previous_page @contacts, h("<<PRE"), :remote => true %>
+  </li>
+  <li class="next">
+    <%= link_to_next_page @contacts, h("NEXT>>"), :remote => true%>
+  </li>
+</ul>

@@ -1,8 +1,8 @@
 class BlogsController < BaseController
-
+  before_action :authenticate_admin!
   before_action :set_blog, only: [:show]
   def index
-    @blogs  = Blog.includes(:tags).where(Blog.get_conditions params).page(params[:page]).per(5)
+    @blogs  = Blog.includes(:tags).where(Blog.get_conditions params).order('created_at desc').page(params[:page]).per(10)
     respond_to do |format|
       format.html
       format.js
@@ -11,6 +11,8 @@ class BlogsController < BaseController
 
 
   def show
+    access = Access.find_or_create_by(blog_id: @blog.id)
+    access.update  amount: (@blog.access.amount + 1)
   end
 
   def about

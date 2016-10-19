@@ -14,8 +14,8 @@
 class Blog < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :category
-  has_many :accesses
-  has_many :blog_tags
+  has_one :access
+  has_many :blog_tags, dependent: :destroy
   has_many :tags, through: :blog_tags
   validates :title, :category_id, :content, presence: true
 

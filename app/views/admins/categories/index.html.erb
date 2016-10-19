@@ -1,0 +1,60 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<%= @category.id %>"><i><small>这里什么都没有</small></i></a>
+
+          <span  style="float: right;">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<%= @category.id %>">添加</a>
+          </span>
+      </h4>
+    </div>
+    <div id="collapseOne<%= @category.id %>" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= form_for @category, url: admins_categories_path do |f| %>
+
+            <div class="control-group form-group">
+              <div class="controls">
+                <label>分类名:</label>
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+            </div>
+            <div id="success"></div>
+            <!-- For success/fail messages -->
+            <%= f.submit '添加', class: 'btn btn-primary'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- First Blog Post -->
+  <% @categories.each do |category| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<%= category.id %>"><%= category.name %></a>
+
+          <span  style="float: right;">
+             <%= link_to '删除', admins_category_path(category), method: :delete, data: { confirm: "确定删除吗?" } %>
+          </span>
+          </h4>
+        </div>
+        <div id="collapseOne<%= category.id %>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <%= form_for category, url: admins_category_path(category) do |f| %>
+
+                <div class="control-group form-group">
+                  <div class="controls">
+                    <label>分类名:</label>
+                    <%= f.text_field :name, class: "form-control" %>
+                  </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <%= f.submit '修改', class: 'btn btn-primary'%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+

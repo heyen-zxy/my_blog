@@ -1,0 +1,51 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle"  data-toggle="collapse" data-parent="#accordion" ></a>
+        <span class="category"></span>
+
+          <span  style="line-height: 40px; float: right;">
+            <%= link_to '添加', new_admins_blog_path %>
+          </span>
+      </h4>
+    </div>
+
+  </div>
+<!-- First Blog Post -->
+<% @blogs.each do |blog| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<%= blog.id %>"><%= blog.title %></a>
+            <span class="category"> <%= blog.category.try(:name)%> </span>
+            <small>
+              <% blog.tags.each do |tag| %>
+                  <span class="tag"><%= tag.name %></span>
+              <% end %>
+              <i style="color: darkolivegreen"><%= blog.access.present? ? blog.access.amount : 0  %></i>
+            </small>
+          <span  style="line-height: 40px; float: right;">
+            <%= link_to '编辑', edit_admins_blog_path(blog) %> / <%= link_to '删除', admins_blog_path(blog), method: :delete, data: { confirm: "确定删除吗?" } %>
+          </span>
+          </h4>
+        </div>
+        <div id="collapseOne<%= blog.id %>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <%= markdown blog.content %>
+          </div>
+        </div>
+      </div>
+<% end %>
+  </div>
+
+
+<!-- Pager -->
+<ul class="pager">
+  <li class="previous">
+    <%= link_to_previous_page @blogs, h("<<PRE"), :remote => true %>
+  </li>
+  <li class="next">
+    <%= link_to_next_page @blogs, h("NEXT>>"), :remote => true%>
+  </li>
+</ul>

@@ -1,0 +1,28 @@
+<div class="control-group form-group">
+  <div class="controls">
+    <label>分类:</label>
+    <%= f.select :category_id, Category.all.collect{|c| [c.name, c.id]}, {},class: "form-control" %>
+    <p class="help-block"></p>
+  </div>
+</div>
+<div class="control-group form-group">
+  <div class="controls">
+    <label>标题:</label>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+</div>
+<div class="control-group form-group">
+  <div class="controls">
+    <label>标签:</label>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, class: "form-control" %>
+  </div>
+</div>
+<div class="control-group form-group">
+  <div class="controls">
+    <label>内容:</label>
+    <%= f.text_area :content, class: "form-control",  style: "resize:none", rows: "40", cols: "100"%>
+  </div>
+</div>
+<div id="success"></div>
+<!-- For success/fail messages -->
+<%= f.submit '修改', class: 'btn btn-primary'%>

@@ -10,6 +10,6 @@
 #
 
 class Tag < ActiveRecord::Base
-  has_many :blog_tags
-  has_and_belongs_to_many :blogs, through: :blog_tags
+  has_many :blog_tags, dependent: :destroy
+  has_and_belongs_to_many :blogs, join_table: :blog_tags
 end

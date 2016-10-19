@@ -1,13 +1,10 @@
 class BaseController < ApplicationController
-  before_action :log_elk
 
-  def log_elk
-    hash = {
-        timestamp: DateTime.now,
-        type: rand(10)%2,
-        code: rand(99999999).to_s
-    }
-    LoggerToJson.logstash 'test', hash
+  before_action 'sum_access'
+
+  def sum_access
+    access = Access.find_or_create_by(blog_id: nil)
+    access.update amount: (access.amount + 1)
   end
 
 end
