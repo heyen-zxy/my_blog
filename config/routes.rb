@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }, path: 'zxy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admins do
+  namespace :admins, path: "zxy" do
     root "blogs#index"
     resources :blogs do
       collection do
