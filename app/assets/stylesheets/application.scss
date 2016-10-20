@@ -76,3 +76,13 @@ a:active{
   text-align: center;
   margin: 5px;
 }
+
+.markdown{
+  max-height:500px;
+  overflow:scroll;
+}
+.markdown img{
+  display: block;
+  margin: auto;
+  max-width: 90%;
+}
