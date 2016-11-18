@@ -22,7 +22,7 @@ module MyBlog
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     #config.autoload_paths += %W(#{Rails.root.join}/lib)
-    config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths += %W(#{Rails.root.join}/lib #{Rails.root.join('app', 'api', '*')})
 
     config.active_record.raise_in_transactional_callbacks = true
 
@@ -40,5 +40,10 @@ module MyBlog
 
     # Precompile additional assets
     config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+
+
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+
   end
 end

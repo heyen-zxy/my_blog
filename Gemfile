@@ -84,6 +84,10 @@ end
 gem 'redcarpet'
 gem 'coderay'
 
+#登录管理
 gem 'devise'
+
+#api
+gem 'grape'
 
 

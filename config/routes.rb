@@ -79,4 +79,7 @@ Rails.application.routes.draw do
   end
 
 
+  mount API => '/api/'
+
+
 end
