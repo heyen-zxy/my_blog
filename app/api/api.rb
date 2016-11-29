@@ -5,6 +5,11 @@ class API < Grape::API
     end
   end
 
+  get :test  do
+    logger.info params
+    status 200
+  end
+
   desc "测试接口"
   post :test  do
     logger.info params
