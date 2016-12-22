@@ -14,8 +14,7 @@ class API < Grape::API
   post :test  do
     logger.info params
     status 200
-    env['api.format'] = :txt
-    "0"
+    {flag: 200, desc: "OK"}
   end
 end
 
