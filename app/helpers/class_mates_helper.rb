@@ -1,0 +1,2 @@
+module ClassMatesHelper
+end
