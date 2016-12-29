@@ -1,0 +1,29 @@
+<div class="panel-group" id="accordion">
+<!-- First Blog Post -->
+<% @class_mates.each do |mate| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" ><%= mate.name %></a>
+            <span class="category"> <%= mate.tel%> </span>
+            <small>
+              <span class="tag"><%= mate.number %></span>
+            </small>
+          <span  style="float: right;">
+          </span>
+          </h4>
+        </div>
+      </div>
+<% end %>
+</div>
+
+
+<!-- Pager -->
+<ul class="pager">
+  <li class="previous">
+    <%= link_to_previous_page @class_mates, h("<<PRE"), :remote => true %>
+  </li>
+  <li class="next">
+    <%= link_to_next_page @class_mates, h("NEXT>>"), :remote => true%>
+  </li>
+</ul>

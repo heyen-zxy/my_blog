@@ -79,6 +79,7 @@ Rails.application.routes.draw do
         post :view
       end
     end
+    resources :class_mates
     resources :categories
     resources :tags
     resources :contacts, only: [:index, :destroy]
