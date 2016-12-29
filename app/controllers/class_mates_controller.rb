@@ -20,15 +20,15 @@ class ClassMatesController < ApplicationController
     redirect_to class_mates_path
   end
 
-  def destroy
-    if @class_mate.destroy
-      flash[:notice] = '删除成功'
-    else
-      flash[:error] = '删除失败'
-    end
-    redirect_to class_mates_path
-
-  end
+  # def destroy
+  #   if @class_mate.destroy
+  #     flash[:notice] = '删除成功'
+  #   else
+  #     flash[:error] = '删除失败'
+  #   end
+  #   redirect_to class_mates_path
+  #
+  # end
 
   def update
     if @class_mate.update class_mate_params
