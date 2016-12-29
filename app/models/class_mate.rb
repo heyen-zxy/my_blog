@@ -11,7 +11,7 @@
 #
 
 class ClassMate < ApplicationRecord
-
+  acts_as_paranoid
 
   def hide
     name[0] = '*'
