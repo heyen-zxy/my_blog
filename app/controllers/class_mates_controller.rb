@@ -31,11 +31,11 @@ class ClassMatesController < ApplicationController
   # end
 
   def update
-    if @class_mate.update class_mate_params
-      flash[:notice] = '修改成功'
-    else
-      flash[:error] = '修改失败'
-    end
+    # if @class_mate.update class_mate_params
+    #   flash[:notice] = '修改成功'
+    # else
+    #   flash[:error] = '修改失败'
+    # end
     redirect_to class_mates_path
   end
 

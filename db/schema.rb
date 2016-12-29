@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229025636) do
+ActiveRecord::Schema.define(version: 20161229074909) do
 
   create_table "accesses", force: :cascade do |t|
     t.integer  "amount",     default: 0
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161229025636) do
     t.integer  "number",     default: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
   end
 
   create_table "contacts", force: :cascade do |t|
