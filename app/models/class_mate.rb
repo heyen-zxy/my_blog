@@ -15,8 +15,8 @@ class ClassMate < ApplicationRecord
   acts_as_paranoid
 
   def hide
-    name[0] = '*'
-    tel[3, 4] = '****'
+    name.to_s[0] = '*'
+    tel.to_s[3, 4] = '****'
     self
   end
 
