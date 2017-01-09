@@ -6,13 +6,16 @@ class API < Grape::API
   end
 
   get :test  do
+    logger.info '---get api-'
     logger.info params
     status 200
   end
 
   desc "测试接口"
   post :test  do
+    logger.info '----post api-----'
     logger.info params
+    logger.info '------key-----'
     logger.info params.key(nil)
     begin
       reports = JSON.parse params.key(nil)
