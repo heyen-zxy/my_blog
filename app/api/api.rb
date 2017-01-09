@@ -13,6 +13,14 @@ class API < Grape::API
   desc "测试接口"
   post :test  do
     logger.info params
+    logger.info params.key(nil)
+    begin
+      reports = JSON.parse params.key(nil)
+      logger.info reports
+    rescue => e
+      logger.info e
+    end
+
     status 200
     {flag: 200, desc: "OK"}
   end
