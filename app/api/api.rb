@@ -23,10 +23,12 @@ class API < Grape::API
       if reports.is_a? Array
         reports.each do |report|
           logger.info report
+          logger.info '----mobile----'
           logger.info report['mobile']
         end
       else
-        logger.info reporst['msgId']
+        logger.info '----msgid----'
+        logger.info reports['msgId']
       end
 
     rescue => e
