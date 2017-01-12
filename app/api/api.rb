@@ -17,22 +17,14 @@ class API < Grape::API
     logger.info params
     logger.info '------key-----'
     logger.info params.key(nil)
-    begin
-      reports = JSON.parse params.key(nil)
-      logger.info reports
-      if reports.is_a? Array
-        reports.each do |report|
-          logger.info report
-          logger.info '----mobile----'
-          logger.info report['mobile']
-        end
-      else
-        logger.info '----msgid----'
-        logger.info reports['msgId']
-      end
-
-    rescue => e
-      logger.info e
+    reports = JSON.parse params.key(nil)
+    unless reports.is_a?(Array)
+      arr = []
+      arr << reports
+      reports = arr
+    end
+    reports.each do |report|
+      logger.info report['msgId'], report['result']
     end
 
     status 200
