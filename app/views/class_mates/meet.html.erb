@@ -91,7 +91,7 @@
       参会人员
       <ul>
         <% ClassMate.all.each do |mate| %>
-          <li><%= mate.name %></li>
+          <li><%= mate.name %> /  <%= mate.money.to_i %></li>
         <% end %>
       </ul>
     </li>
