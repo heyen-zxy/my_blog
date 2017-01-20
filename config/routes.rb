@@ -66,11 +66,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :class_mates do
-    collection do
-      get :meet
-    end
-  end
 
   namespace :admins, path: "zxy" do
     root "blogs#index"
