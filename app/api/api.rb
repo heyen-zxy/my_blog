@@ -30,5 +30,11 @@ class API < Grape::API
     status 200
     {flag: 200, desc: "OK"}
   end
+
+  desc "测试接口"
+  post :download  do
+    logger.info params[:id]
+    {flag: 200, desc: "OK"}
+  end
 end
 

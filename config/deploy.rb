@@ -12,16 +12,17 @@ require 'mina/rvm'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 #服务器地址,是使用ssh的方式登录服务器
-set :domain, 'root@112.124.46.102'
+set :domain, '119.29.119.91'
 #服务器中项目部署位置
 set :deploy_to, '/var/rails-app/blog'
 #git代码仓库
 set :repository, 'https://github.com/heyen-zxy/my_blog.git'
 #git分支
 set :branch, 'master'
+set :user, 'ubuntu'
 
 # For system-wide RVM install.
-set :rvm_path, '/usr/local/rvm/bin/rvm'
+#set :rvm_path, '/usr/local/rvm/scripts/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
@@ -97,6 +98,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
+    invoke :'rails:db_create'
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
@@ -104,7 +106,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       #queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-      queue "pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  restart"
+      queue "bundle exec pumactl -F  #{deploy_to}/#{current_path}/config/puma.rb  restart"
     end
   end
 end
